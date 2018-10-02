@@ -2,7 +2,7 @@ from oracle import *
 import sys
 
 if len(sys.argv) < 2:
-    print "Usage: python sample.py <filename>"
+    print("Usage: python sample.py <filename>")
     sys.exit(-1)
 
 f = open(sys.argv[1])
@@ -35,8 +35,7 @@ tag_1 = Mac(msg_0+msg_1, len(msg_0+msg_1))
 msg_2 = ''.join(chr(ord(m)^t) for m, t in zip(msg_2, tag_1))
 tag_2 = Mac(msg_2+msg_3, len(msg_2+msg_3))
 
-ret = Vrfy(msg_forged, len(msg_forged), tag_2)
-if (ret==1):
+if Vrfy(msg_forged, len(msg_forged), tag_2):
     print("Message verified successfully!")
 else:
     print("Message verification failed.")
